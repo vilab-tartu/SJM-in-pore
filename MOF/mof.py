@@ -72,8 +72,8 @@ mof.pbc = [True, True, True]
 
 # Set up the GPAW calculator without solvation or jellium, using your mixer
 calc = GPAW(
-    mode='fd',
-    xc='LDA',
+    mode='lcao',
+    xc='PBE',
     h = 0.2,
     kpts=(2, 2, 2),
     parallel={'augment_grids': True, 'sl_auto': True},
