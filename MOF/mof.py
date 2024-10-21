@@ -66,15 +66,13 @@ C       -5.03727557       9.84841515       3.37028650       53
 
 mof = read(StringIO(mof_coord), format='xyz')
 mof.cell = [[13.266613, 0.0, 0.0], [-6.633417567293187, 11.492202306930997, 0.0], [0.0, 0.0, 6.740573]]
-min_coords = mof.positions.min(axis=0)
-mof.positions -= min_coords
 mof.wrap()
 mof.pbc = [True, True, True]
 
 # Set up the GPAW calculator without solvation or jellium, using your mixer
 calc = GPAW(
     mode='fd',
-    xc='PBE',
+    xc='LDA',
     h = 0.2,
     kpts=(2, 2, 2),
     parallel={'augment_grids': True, 'sl_auto': True},
@@ -116,7 +114,7 @@ pov_file = 'mof_view.pov'
 png_file = 'mof_view.png'
 
 # Write the .pov file for the structure
-write(pov_file, atoms, format='pov', povray_settings=povray_settings, **generic_projection_settings)
+write(pov_file, mof, format='pov', povray_settings=povray_settings, **generic_projection_settings)
 
 # Run POV-Ray to generate the PNG image
 os.system(f'povray +I{pov_file} +O{png_file} +W1024 +H2048 +A +AM2 +UA +Q9')
