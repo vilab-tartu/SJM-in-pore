@@ -108,6 +108,7 @@ povray_settings = {
     'point_lights': [],                # No specific point lights
     'area_light': [(2, 3, 40), 'White', 20, 20, 5, 5],  # Soft lighting settings
     'celllinewidth': 0.05,             # Line thickness for unit cell
+    'background': 'White',             # Set background to white
 }
 
 # Define output filenames
