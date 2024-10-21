@@ -3,6 +3,7 @@ from gpaw import GPAW, PoissonSolver, MixerDif
 from gpaw.utilities import h2gpts
 from io import StringIO
 import numpy as np
+import os
 
 # Load the xyz file
 mof_coord = '''54
@@ -72,8 +73,8 @@ mof.pbc = [True, True, True]
 
 # Set up the GPAW calculator without solvation or jellium, using your mixer
 calc = GPAW(
-    mode='lcao',
-    xc='PBE',
+    mode='fd',
+    xc='LDA',
     h = 0.2,
     kpts=(2, 2, 2),
     parallel={'augment_grids': True, 'sl_auto': True},
@@ -86,5 +87,35 @@ mof.calc = calc
 # Run the calculation
 energy = mof.get_potential_energy()
 
-# Save the calculation to a .gpw file
-calc.write('mof.gpw')
+# Define projection settings for POV-Ray
+generic_projection_settings = {
+    'rotation': '0x,0y,90z',  # Adjust rotation as needed
+    'radii': 0.9,               # Atom radius in the visualization
+    'colors': None,             # Use default atom colors
+    'show_unit_cell': 2,        # Show all of the unit cell
+}
+
+# Define POV-Ray settings
+povray_settings = {
+    'display': False,                  # Do not display while rendering
+    'transparent': False,              # Opaque background
+    'camera_type': 'orthographic',     # Use orthographic camera for full cell view
+    'camera_dist': 5000,              # Adjust camera distance to see the full cell
+    'canvas_width': 1024,              # Output image width in pixels
+    'canvas_height': None,             # Output image height (None = auto)
+    'image_plane': None,               # Distance from front atom to image plane
+    'depth_cueing': False,             # No fading with distance
+    'point_lights': [],                # No specific point lights
+    'area_light': [(2, 3, 40), 'White', 20, 20, 5, 5],  # Soft lighting settings
+    'celllinewidth': 0.05,             # Line thickness for unit cell
+}
+
+# Define output filenames
+pov_file = 'mof_view.pov'
+png_file = 'mof_view.png'
+
+# Write the .pov file for the structure
+write(pov_file, atoms, format='pov', povray_settings=povray_settings, **generic_projection_settings)
+
+# Run POV-Ray to generate the PNG image
+os.system(f'povray +I{pov_file} +O{png_file} +W1024 +H2048 +A +AM2 +UA +Q9')
