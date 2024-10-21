@@ -1,0 +1,304 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  24.6.0
+ |___|_|             
+
+User:   vi@vi-clevo
+Date:   Mon Oct 21 19:42:22 2024
+Arch:   x86_64
+Pid:    19510
+CWD:    /mnt/c/Users/vi/Desktop/Jellium/Pore/MOF-Solvent
+Python: 3.12.3
+gpaw:   /home/vi/miniconda3/envs/gpaw24/lib/python3.12/site-packages/gpaw
+_gpaw:  /home/vi/miniconda3/envs/gpaw24/lib/python3.12/site-packages/
+        _gpaw.cpython-312-x86_64-linux-gnu.so
+ase:    /home/vi/miniconda3/envs/gpaw24/lib/python3.12/site-packages/ase (version 3.23.0)
+numpy:  /home/vi/miniconda3/envs/gpaw24/lib/python3.12/site-packages/numpy (version 1.26.4)
+scipy:  /home/vi/miniconda3/envs/gpaw24/lib/python3.12/site-packages/scipy (version 1.13.1)
+libxc:  6.2.2
+units:  Angstrom and eV
+cores: 1
+OpenMP: True
+OMP_NUM_THREADS: 1
+
+Input parameters:
+  h: 0.2
+  kpts: [2 2 2]
+  mode: fd
+
+System changes: positions, numbers, cell, pbc, initial_charges, initial_magmoms 
+
+Initialize ...
+
+species:
+  Zn:
+    name: Zinc
+    id: 5ebf863f442df07f995a1d0f0e5f6815
+    Z: 30.0
+    valence: 12
+    core: 18
+    charge: 0.0
+    file: /home/vi/miniconda3/envs/gpaw24/share/gpaw/Zn.LDA.gz
+    compensation charges: {type: gauss,
+                           rc: 0.37,
+                           lmax: 2}
+    cutoffs: {filter: 2.14,
+              core: 2.28}
+    projectors:
+      #              energy  rcut
+      - 4s(2.00)    -6.218   1.286
+      - 4p(0.00)    -1.230   1.270
+      - 3d(10.00)   -10.426   1.180
+      -  s          20.994   1.286
+      -  p          25.981   1.270
+      -  d          16.786   1.180
+  
+    # Using partial waves for Zn as LCAO basis
+
+  O:
+    name: Oxygen
+    id: 9b9d51c344dea68c822856295a461509
+    Z: 8.0
+    valence: 6
+    core: 2
+    charge: 0.0
+    file: /home/vi/miniconda3/envs/gpaw24/share/gpaw/O.LDA.gz
+    compensation charges: {type: gauss,
+                           rc: 0.21,
+                           lmax: 2}
+    cutoffs: {filter: 1.17,
+              core: 0.83}
+    projectors:
+      #              energy  rcut
+      - 2s(2.00)   -23.752   0.688
+      - 2p(4.00)    -9.195   0.598
+      -  s           3.459   0.688
+      -  p          18.016   0.598
+      -  d           0.000   0.619
+  
+    # Using partial waves for O as LCAO basis
+
+  C:
+    name: Carbon
+    id: d60576a1f549371a163e72552ca58787
+    Z: 6.0
+    valence: 4
+    core: 2
+    charge: 0.0
+    file: /home/vi/miniconda3/envs/gpaw24/share/gpaw/C.LDA.gz
+    compensation charges: {type: gauss,
+                           rc: 0.20,
+                           lmax: 2}
+    cutoffs: {filter: 1.14,
+              core: 1.14}
+    projectors:
+      #              energy  rcut
+      - 2s(2.00)   -13.639   0.635
+      - 2p(2.00)    -5.414   0.635
+      -  s          13.573   0.635
+      -  p          21.797   0.635
+      -  d           0.000   0.635
+  
+    # Using partial waves for C as LCAO basis
+
+Reference energy: -365848.464770  # eV
+
+Spin-paired calculation
+
+Convergence criteria:
+ Maximum [total energy] change in last 3 cyles: 0.0005 eV / valence electron
+ Maximum integral of absolute [dens]ity change: 0.0001 electrons / valence electron
+ Maximum integral of absolute [eigenst]ate change: 4e-08 eV^2 / valence electron
+ Maximum number of scf [iter]ations: 333
+ (Square brackets indicate name in SCF output, whereas a 'c' in
+ the SCF output indicates the quantity has converged.)
+
+Symmetries present (total): 2
+
+  ( 1  0  0)  ( 1  0  0)
+  ( 0  1  0)  ( 0  1  0)
+  ( 0  0  1)  ( 0  0 -1)
+
+8 k-points: 2 x 2 x 2 Monkhorst-Pack grid
+2 k-points in the irreducible part of the Brillouin zone
+       k-points in crystal coordinates                weights
+   0:     0.25000000   -0.25000000    0.25000000          4/8
+   1:     0.25000000    0.25000000    0.25000000          4/8
+
+Wave functions: Uniform real-space grid
+  Kinetic energy operator: 8*3+1=25 point O(h^6) finite-difference Laplacian
+  ScaLapack parameters: grid=1x1, blocksize=64
+  Wavefunction extrapolation:
+    Improved wavefunction reuse through dual PAW basis 
+
+Occupation numbers: Fermi-Dirac:
+  width: 0.1000  # eV
+ 
+
+Eigensolver
+   Davidson(niter=2) 
+
+Densities:
+  Coarse grid: 56*56*32 grid
+  Fine grid: 112*112*64 grid
+  Total Charge: 0.000000 
+
+Density mixing:
+  Method: separate
+  Backend: pulay
+  Linear mixing parameter: 0.05
+  old densities: 5
+  Damping of long wavelength oscillations: 50 
+
+Hamiltonian:
+  XC and Coulomb potentials evaluated on a 112*112*64 grid
+  Using the LDA Exchange-Correlation functional
+  Interpolation: tri-quintic (5. degree polynomial)
+  Poisson solver: FastPoissonSolver using
+    Stencil: 8*3+1=25 point O(h^6) finite-difference Laplacian
+    FFT axes: [0, 1, 2]
+    FST axes: []
+ 
+
+Memory estimate:
+  Process memory now: 212.07 MiB
+  Calculator: 998.16 MiB
+    Density: 75.96 MiB
+      Arrays: 19.91 MiB
+      Localized functions: 48.40 MiB
+      Mixer: 7.66 MiB
+    Hamiltonian: 16.33 MiB
+      Arrays: 13.02 MiB
+      XC: 0.00 MiB
+      Poisson: 0.00 MiB
+      vbar: 3.31 MiB
+    Wavefunctions: 905.88 MiB
+      Arrays psit_nG: 588.00 MiB
+      Eigensolver: 307.29 MiB
+      Projections: 4.29 MiB
+      Projectors: 6.30 MiB
+
+Total number of cores used: 1
+
+Number of atoms: 54
+Number of atomic orbitals: 246
+Number of bands in calculation: 192
+Number of valence electrons: 312
+Bands to converge: occupied
+
+... initialized
+
+Initializing position-dependent things.
+
+Density initialized from atomic densities
+Creating initial wave functions:
+  192 bands from LCAO basis set
+
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                C   C          O      O                             
+              C      C  O                  O                        
+               C  CO                         O                      
+                                               Zn                   
+                 O  C      Zn  O      O    O                        
+              C      C  O                  OC  C                    
+               C   O                  O  C      C                   
+                   O    O      O   Zn     C  OC     Zn              
+               ZnO                         O                        
+                                            C   C                   
+                   O                  O   C      C                  
+                    Zn  O      O           C  C                     
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+
+Positions:
+   0 Zn    -3.311508    5.745389    0.000000    ( 0.0000,  0.0000,  0.0000)
+   1 Zn     0.008798   11.475067    0.000000    ( 0.0000,  0.0000,  0.0000)
+   2 Zn     0.000000    0.000000    0.000000    ( 0.0000,  0.0000,  0.0000)
+   3 Zn     9.654686    6.016570    3.370287    ( 0.0000,  0.0000,  0.0000)
+   4 Zn     6.356848    0.273894    3.370287    ( 0.0000,  0.0000,  0.0000)
+   5 Zn    12.999812    0.283685    3.370287    ( 0.0000,  0.0000,  0.0000)
+   6 O      8.636875    4.323401    0.000000    ( 0.0000,  0.0000,  0.0000)
+   7 O      7.208602    1.838281    0.000000    ( 0.0000,  0.0000,  0.0000)
+   8 O     -2.008673    4.314104    0.000000    ( 0.0000,  0.0000,  0.0000)
+   9 O      1.901801   11.072128    0.000000    ( 0.0000,  0.0000,  0.0000)
+  10 O     -0.587371    1.851830    0.000000    ( 0.0000,  0.0000,  0.0000)
+  11 O      4.736624   11.078265    0.000000    ( 0.0000,  0.0000,  0.0000)
+  12 O     -0.588016    9.632534    0.000000    ( 0.0000,  0.0000,  0.0000)
+  13 O     -2.009198    7.180271    0.000000    ( 0.0000,  0.0000,  0.0000)
+  14 O      4.750180    0.416167    0.000000    ( 0.0000,  0.0000,  0.0000)
+  15 O      8.640642    7.175099    0.000000    ( 0.0000,  0.0000,  0.0000)
+  16 O      1.891483    0.423327    0.000000    ( 0.0000,  0.0000,  0.0000)
+  17 O      7.214543    9.643842    0.000000    ( 0.0000,  0.0000,  0.0000)
+  18 O      8.355932    4.576195    3.370287    ( 0.0000,  0.0000,  0.0000)
+  19 O      6.946570    2.119197    3.370287    ( 0.0000,  0.0000,  0.0000)
+  20 O     -2.293397    4.593675    3.370287    ( 0.0000,  0.0000,  0.0000)
+  21 O      1.617223   11.340988    3.370287    ( 0.0000,  0.0000,  0.0000)
+  22 O     -0.855644    2.129080    3.370287    ( 0.0000,  0.0000,  0.0000)
+  23 O      4.475674   11.345654    3.370287    ( 0.0000,  0.0000,  0.0000)
+  24 O     -0.849537    9.910979    3.370287    ( 0.0000,  0.0000,  0.0000)
+  25 O     -2.287952    7.434145    3.370287    ( 0.0000,  0.0000,  0.0000)
+  26 O      4.466378    0.684119    3.370287    ( 0.0000,  0.0000,  0.0000)
+  27 O      8.358060    7.452912    3.370287    ( 0.0000,  0.0000,  0.0000)
+  28 O      1.631011    0.690440    3.370287    ( 0.0000,  0.0000,  0.0000)
+  29 O      6.946177    9.922632    3.370287    ( 0.0000,  0.0000,  0.0000)
+  30 C      9.214720    3.172675    0.000000    ( 0.0000,  0.0000,  0.0000)
+  31 C      8.493745    1.919129    0.000000    ( 0.0000,  0.0000,  0.0000)
+  32 C     10.670784    3.171457    0.000000    ( 0.0000,  0.0000,  0.0000)
+  33 C      9.225882    0.661801    0.000000    ( 0.0000,  0.0000,  0.0000)
+  34 C     11.395239    1.920726    0.000000    ( 0.0000,  0.0000,  0.0000)
+  35 C     10.671073    0.663491    0.000000    ( 0.0000,  0.0000,  0.0000)
+  36 C     -1.868814    9.573602    0.000000    ( 0.0000,  0.0000,  0.0000)
+  37 C     -2.593849    8.321940    0.000000    ( 0.0000,  0.0000,  0.0000)
+  38 C     -2.593767   10.833929    0.000000    ( 0.0000,  0.0000,  0.0000)
+  39 C     -4.045548    8.324400    0.000000    ( 0.0000,  0.0000,  0.0000)
+  40 C     -4.038793   10.837032    0.000000    ( 0.0000,  0.0000,  0.0000)
+  41 C     -4.767868    9.576418    0.000000    ( 0.0000,  0.0000,  0.0000)
+  42 C      8.946957    3.437019    3.370287    ( 0.0000,  0.0000,  0.0000)
+  43 C      8.227654    2.183266    3.370287    ( 0.0000,  0.0000,  0.0000)
+  44 C     10.398915    3.442087    3.370287    ( 0.0000,  0.0000,  0.0000)
+  45 C      8.957230    0.925915    3.370287    ( 0.0000,  0.0000,  0.0000)
+  46 C     11.127158    2.192724    3.370287    ( 0.0000,  0.0000,  0.0000)
+  47 C     10.402389    0.929271    3.370287    ( 0.0000,  0.0000,  0.0000)
+  48 C     -2.135741    9.836383    3.370287    ( 0.0000,  0.0000,  0.0000)
+  49 C     -2.862255    8.587422    3.370287    ( 0.0000,  0.0000,  0.0000)
+  50 C     -2.862326   11.097606    3.370287    ( 0.0000,  0.0000,  0.0000)
+  51 C     -4.317934    8.593168    3.370287    ( 0.0000,  0.0000,  0.0000)
+  52 C     -4.307750   11.101927    3.370287    ( 0.0000,  0.0000,  0.0000)
+  53 C     -5.037276    9.848415    3.370287    ( 0.0000,  0.0000,  0.0000)
+
+Unit cell:
+           periodic     x           y           z      points  spacing
+  1. axis:    yes   13.266613    0.000000    0.000000    56     0.2052
+  2. axis:    yes   -6.633418   11.492202    0.000000    56     0.2052
+  3. axis:    yes    0.000000    0.000000    6.740573    32     0.2106
+
+  Lengths:  13.266613  13.269248   6.740573
+  Angles:   90.000000  90.000000 119.993985
+
+Effective grid spacing dv^(1/3) = 0.2172
+
+     iter     time        total  log10-change:
+                         energy   eigst   dens
+iter:   1 19:42:43  -463.803155
+iter:   2 19:43:00  -461.062063   +0.40  -0.94
+iter:   3 19:43:19  -445.786532   +0.04  -0.97
+iter:   4 19:43:35  -442.386143   -0.35  -1.19
+iter:   5 19:43:52  -440.283401   -0.69  -1.32
+iter:   6 19:44:13  -440.879068   -0.79  -1.59
+iter:   7 19:44:30  -439.802297   -1.18  -1.68
+iter:   8 19:44:47  -439.519550   -1.39  -1.90
+iter:   9 19:45:04  -439.401958   -2.33  -2.31
+iter:  10 19:45:33  -439.346073   -2.71  -2.33
+iter:  11 19:45:52  -439.344958c  -2.94  -2.58
+iter:  12 19:46:11  -439.343785c  -3.05  -2.63
+iter:  13 19:46:33  -439.337555c  -3.11  -2.76
+iter:  14 19:46:54  -439.337446c  -3.78  -2.97
+iter:  15 19:47:20  -439.336747c  -3.97  -3.19
+iter:  16 19:47:43  -439.334279c  -4.15  -3.36
