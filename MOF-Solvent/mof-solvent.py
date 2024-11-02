@@ -79,15 +79,16 @@ C       -5.03727557       9.84841515       3.37028650       53
 mof = read(StringIO(mof_coord), format='xyz')
 mof.cell = [[13.266613, 0.0, 0.0], [-6.633417567293187, 11.492202306930997, 0.0], [0.0, 0.0, 6.740573]]
 mof.wrap()
+mof.repeat((1,1,2))
 mof.pbc = [True, True, True]
 
 # Set up the GPAW calculator without solvation or jellium, using your mixer
 calc = GPAW(
     mode='fd',
     xc='LDA',
-    h = 0.2,
-    kpts=(2, 2, 2),
-    parallel={'augment_grids': True, 'sl_auto': True},
+    h = 0.16,
+    kpts=(1, 1, 1),
+    #parallel={'augment_grids': True, 'sl_auto': True},
     txt='mof.txt'
 )
 
@@ -150,9 +151,9 @@ print("Cavity density with atoms saved to 'mof-cavity.cube'.")
 calc_solvation = SolvationGPAW(
     mode='fd',
     xc='LDA',
-    h=0.2,
-    kpts=(2, 2, 2),
-    parallel={'augment_grids': True, 'sl_auto': True},
+    h=0.16,
+    kpts=(1, 1, 1),
+    #parallel={'augment_grids': True, 'sl_auto': True},
     ###poissonsolver=PoissonSolver(),
     cavity=cavity,  # Use the pre-defined cavity
     dielectric=dielectric,
